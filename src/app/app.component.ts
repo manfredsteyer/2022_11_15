@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { FlightSearchComponent } from './flight-search/flight-search.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
@@ -11,6 +12,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   imports: [
     NavbarComponent,
     SidebarComponent,
+
+    FlightSearchComponent,
   ]
 })
 export class AppComponent {
