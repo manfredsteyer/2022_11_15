@@ -17,10 +17,31 @@ export class FlightSearchComponent {
   flights: Array<Flight> = [];
   selectedFlight: Flight | undefined;
 
+  message = '';
+
   private http = inject(HttpClient);
 
   select(f: Flight): void {
     this.selectedFlight = f;
+  }
+
+  save(): void {
+    if (!this.selectedFlight) return;
+
+    const url = 'http://demo.angulararchitects.io/api/flight';
+
+    const headers = { 'Accept': 'application/json' };
+
+    this.http.post<Flight>(url, this.selectedFlight, { headers }).subscribe({
+      next: (flight) => {
+        this.selectedFlight = flight;
+        this.message = 'Update successful!';
+      },
+      error: (errResponse) => {
+        this.message = 'Error on updating the Flight';
+        console.error(this.message, errResponse);
+      },
+    });
   }
 
   search(): void {
